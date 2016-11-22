@@ -1,0 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_convert_base_uintmax_t.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qdupless <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/08/06 18:41:33 by qdupless          #+#    #+#             */
+/*   Updated: 2016/08/06 18:42:04 by qdupless         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_convert_base_uintmax_t(uintmax_t num, uintmax_t base)
+{
+	int			i;
+	uintmax_t	n;
+	uintmax_t	mod;
+	char		*tab;
+	const char	op[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a',
+	'b', 'c', 'd', 'e', 'f'};
+
+	i = 0;
+	n = num;
+	while (n != 0)
+	{
+		mod = n % base;
+		n = n / base;
+		i++;
+	}
+	tab = ft_strnew(i);
+	n = num;
+	while (n != 0)
+	{
+		mod = n % base;
+		n = n / base;
+		tab[--i] = op[mod];
+	}
+	return (num == 0) ? ft_strdup("0") : tab;
+}
