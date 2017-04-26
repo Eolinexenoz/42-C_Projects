@@ -52,5 +52,10 @@ void				ft_tri(t_push **cop, t_var *test, t_push **la, t_push **lb);
 void				ft_separate_to_tri(t_push **la, t_push **lb, t_var *test);
 int					ft_calc_med(t_push **cop, t_var *test);
 void				ft_tri_2(t_push **la, t_var *test);
+void				ft_put_error(void);
+int					ft_check_double(t_push **cop);
+int					ft_check_list(t_push **cop);
+void				ft_check_number(char **av, t_var *test, int i);
+int					ft_check_ascii(char **av);
 
 #endif

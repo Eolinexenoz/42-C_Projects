@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qdupless <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/01 13:42:09 by qdupless          #+#    #+#             */
-/*   Updated: 2017/04/01 13:45:19 by qdupless         ###   ########.fr       */
+/*   Created: 2017/04/26 16:17:44 by qdupless          #+#    #+#             */
+/*   Updated: 2017/04/26 16:18:36 by qdupless         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef CHECKER_H
+# define CHECKER_H
+
 # include <unistd.h>
 # include "./libft/libft.h"
 
@@ -54,7 +55,8 @@ int					ft_calc_med(t_push **cop, t_var *test);
 void				ft_tri_2(t_push **la, t_var *test);
 void				ft_put_error(void);
 int					ft_check_double(t_push **cop);
-void				ft_check_list(t_push **cop);
+int					ft_check_list(t_push **cop);
 void				ft_check_number(char **av, t_var *test, int i);
+int					ft_check_ascii(char **av);
 
 #endif

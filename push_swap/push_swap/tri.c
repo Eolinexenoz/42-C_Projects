@@ -12,6 +12,30 @@
 
 #include "push_swap.h"
 
+int		ft_check_ascii(char **av)
+{
+	int		i;
+	int		j;
+
+	i = 1;
+	j = 0;
+	while (av[i])
+	{
+		while (av[i][j])
+		{
+			if ((av[i][j] >= 0 && av[i][j] < 4) || (av[i][j] > 4 && av[i][j]  \
+				< 43) || (av[i][j] == 44) || (av[i][j] > 45 && av[i][j] < 48) \
+				|| (av[i][j] > 57 && av[i][j] <= 127))
+				return (1);
+			else
+				j++;
+		}
+		j = 0;
+		i++;
+	}
+	return (0);
+}
+
 void	ft_tri_lb(t_push **lb, t_var *test)
 {
 	if ((*lb)->name == test->min)

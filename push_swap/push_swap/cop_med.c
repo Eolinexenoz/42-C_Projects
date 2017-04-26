@@ -12,6 +12,22 @@
 
 #include "push_swap.h"
 
+void	ft_check_number(char **av, t_var *test, int i)
+{
+	long	nb;
+
+	while (i < test->ac)
+	{
+		nb = ft_atol(av[i]);
+		if (nb > (long)test->min)
+			ft_put_error();
+		else if (nb < (long)test->max)
+			ft_put_error();
+		else
+			i++;
+	}
+}
+
 void	ft_tri_2(t_push **la, t_var *test)
 {
 	t_push	*tmp;
@@ -81,8 +97,14 @@ void	ft_tri(t_push **cop, t_var *test, t_push **la, t_push **lb)
 
 	i = 1;
 	stock = 0;
+	if (ft_check(cop) == 1 && ft_check_list(cop) == 1)
+	{
+		ft_separate_to_tri(la, lb, test);
+		return ;
+	}
 	while (!ft_check(cop))
 		ft_tri_2(cop, test);
+	ft_check_list(cop);
 	tmp = *cop;
 	test->med = ft_calc_med(cop, test);
 	while (i != test->ac)

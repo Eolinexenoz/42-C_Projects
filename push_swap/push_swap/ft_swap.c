@@ -12,32 +12,6 @@
 
 #include "push_swap.h"
 
-void	ft_putlist(t_push **la, t_push **lb, t_var *test)
-{
-	t_push	*tmp;
-	t_push	*tmp2;
-
-	tmp = *la;
-	tmp2 = *lb;
-	while (tmp)
-	{
-		ft_putstr("la Valeur maillon ->name : ");
-		ft_putnbr(tmp->name);
-		ft_putendl("");
-		tmp = tmp->next;
-	}
-	while (tmp2)
-	{
-		ft_putstr("lb valeur maillon ->name : ");
-		ft_putnbr(tmp2->name);
-		ft_putendl("");
-		tmp2 = tmp2->next;
-	}
-	ft_putstr("test->ope Nb d'operations = ");
-	ft_putnbr(test->ope);
-	ft_putendl("");
-}
-
 void	ft_init(t_var *test, int ac)
 {
 	test->ope = 0;
@@ -52,6 +26,8 @@ void	ft_cop_go(int ac, char **av, t_push **cop)
 	int		stock;
 
 	i = 1;
+	if (ft_check_ascii(av) == 1)
+		ft_put_error();
 	while (i < ac)
 	{
 		stock = ft_atoi(av[i]);
@@ -72,7 +48,8 @@ void	ft_get_ac(int ac, char **av, t_push *la, t_push *lb)
 	cop = NULL;
 	test = ft_memalloc(sizeof(t_list));
 	ft_init(test, ac);
-	while (i < ac)
+	ft_check_number(av, test, i);
+	while (i < test->ac)
 	{
 		stock = ft_atoi(av[i]);
 		ft_addlst(&la, stock);
@@ -82,10 +59,8 @@ void	ft_get_ac(int ac, char **av, t_push *la, t_push *lb)
 			test->min = stock;
 		i++;
 	}
-	i = 1;
 	ft_cop_go(ac, av, &cop);
 	ft_tri(&cop, test, &la, &lb);
-	//ft_putlist(&la, &lb, test);
 }
 
 int		main(int ac, char **av)
@@ -95,6 +70,12 @@ int		main(int ac, char **av)
 
 	la = NULL;
 	lb = NULL;
-	ft_get_ac(ac, av, la, lb);
+	if (ac == 1)
+	{
+		ft_putendl("Error");
+		return (0);
+	}
+	else
+		ft_get_ac(ac, av, la, lb);
 	return (0);
 }
